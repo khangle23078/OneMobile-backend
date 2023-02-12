@@ -7,7 +7,7 @@ const productSchema = new Schema(
       require: true,
     },
     image: {
-      type: String,
+      type: Object,
       require: true,
       public_id: {
         type: String,
@@ -16,24 +16,29 @@ const productSchema = new Schema(
         type: String,
       },
     },
+    quantity: {
+      type: Number,
+      require: true,
+    },
+    brand: {
+      type: String,
+      require: true,
+    },
     origin_price: {
       type: Number,
       require: true,
     },
     sale_pice: {
       type: Number,
+      default: 0,
     },
     desc: {
       type: String,
       require: true,
     },
-    specs: {
-      type: [
-        {
-          k: String,
-          v: String,
-        },
-      ],
+    isHot: {
+      type: Boolean,
+      require: true,
     },
     category_id: {
       type: Types.ObjectId,
