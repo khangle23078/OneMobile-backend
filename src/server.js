@@ -6,6 +6,7 @@ import {connectDb} from "./config/db.config.js";
 import categoryRoute from "./routes/category.route.js";
 import productRoute from "./routes/product.route.js";
 import orderRoute from "./routes/order.route.js";
+import authRoute from "./routes/auth.route.js";
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ app.use(morgan("tiny"));
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running in PORT ${PORT}`);
