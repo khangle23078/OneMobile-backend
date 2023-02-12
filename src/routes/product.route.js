@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {
   createProduct,
+  deleteProductById,
   getProductById,
   getProducts,
   updateProductById,
@@ -12,5 +13,6 @@ router.get("/getAll", getProducts);
 router.get("/getById/:id", getProductById);
 router.post("/create", createProduct);
 router.post("/updateById/:id", updateProductById);
+router.post("/deleteById/:id", deleteProductById);
 
 export default router;

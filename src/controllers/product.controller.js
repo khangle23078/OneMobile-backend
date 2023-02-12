@@ -1,5 +1,10 @@
 import productModel from "../models/product.model.js";
-import {getAll, getById, updateById} from "./../services/product.service.js";
+import {
+  deleteById,
+  getAll,
+  getById,
+  updateById,
+} from "./../services/product.service.js";
 
 export const getProducts = async (req, res) => {
   try {
@@ -67,6 +72,26 @@ export const updateProductById = async (req, res) => {
       data: null,
       error: false,
       message: "Update product success",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const deleteProductById = async (req, res) => {
+  try {
+    const {id} = req.params;
+    await deleteById(id);
+    res.status(200).json({
+      status: 200,
+      data: null,
+      error: false,
+      message: "Delete product success",
     });
   } catch (error) {
     res.status(400).json({

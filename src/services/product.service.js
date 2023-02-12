@@ -11,3 +11,7 @@ export const getById = (id) => {
 export const updateById = (id, data) => {
   return productModel.findByIdAndUpdate(id, data, {new: true}).exec();
 };
+
+export const deleteById = (id) => {
+  return productModel.findByIdAndDelete(id).exec();
+};
