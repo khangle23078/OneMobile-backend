@@ -1,3 +1,4 @@
+import categoryModel from "../models/category.model.js";
 import {getAll} from "../services/category.service.js";
 
 export const getCategories = async (req, res) => {
@@ -6,13 +7,34 @@ export const getCategories = async (req, res) => {
     res.status(200).json({
       status: 200,
       data: categories,
-      error: null,
+      error: false,
     });
   } catch (error) {
     res.status(400).json({
       status: 400,
       data: null,
-      error: error.message,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const createCategory = async (req, res) => {
+  try {
+    const category = new categoryModel(req.body);
+    await category.save();
+    res.status(200).json({
+      status: 200,
+      data: null,
+      error: false,
+      message: "Create category success",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
     });
   }
 };
