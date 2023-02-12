@@ -1,5 +1,5 @@
 import categoryModel from "../models/category.model.js";
-import {getAll} from "../services/category.service.js";
+import {getAll, getById} from "../services/category.service.js";
 
 export const getCategories = async (req, res) => {
   try {
@@ -7,6 +7,25 @@ export const getCategories = async (req, res) => {
     res.status(200).json({
       status: 200,
       data: categories,
+      error: false,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const getCategoryById = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const category = await getById(id);
+    res.status(200).json({
+      status: 200,
+      data: category,
       error: false,
     });
   } catch (error) {
