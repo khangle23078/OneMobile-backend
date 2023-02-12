@@ -7,3 +7,7 @@ export const getAll = () => {
 export const getById = (id) => {
   return categoryModel.findById(id);
 };
+
+export const updateById = (id, data) => {
+  return categoryModel.findByIdAndUpdate(id, data, {new: true}).exec();
+};

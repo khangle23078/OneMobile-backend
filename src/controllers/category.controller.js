@@ -1,5 +1,5 @@
 import categoryModel from "../models/category.model.js";
-import {getAll, getById} from "../services/category.service.js";
+import {getAll, getById, updateById} from "../services/category.service.js";
 
 export const getCategories = async (req, res) => {
   try {
@@ -47,6 +47,26 @@ export const createCategory = async (req, res) => {
       data: null,
       error: false,
       message: "Create category success",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const updateCategoryById = async (req, res) => {
+  try {
+    const {id} = req.params;
+    await updateById(id, req.body);
+    res.status(200).json({
+      status: 200,
+      data: null,
+      error: false,
+      message: "Update category success",
     });
   } catch (error) {
     res.status(400).json({
