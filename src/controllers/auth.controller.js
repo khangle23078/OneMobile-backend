@@ -4,6 +4,7 @@ import { checkExistUser } from "./../services/user.service.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { generateAccessToken, generateRefreshToken } from "../helpers/jwt.js";
+import { json } from "express";
 
 export const register = async (req, res) => {
   try {
@@ -16,7 +17,7 @@ export const register = async (req, res) => {
     }
     const user = new userModel({ email, password });
     await user.save();
-    res.status(200).json({
+    return res.status(200).json({
       status: 200,
       message: "Register user success!!",
     });
@@ -43,11 +44,10 @@ export const login = async (req, res) => {
       throw createHttpError[400]("Password doesn't match");
     }
 
-    const accessToken = generateAccessToken({ email, password })
+    const accessToken = generateAccessToken(existUser._id)
 
-    const refreshToken = generateRefreshToken({ email, password })
-
-    res.status(200).json({
+    const refreshToken = generateRefreshToken(existUser._id)
+    return res.status(200).json({
       status: 200,
       data: {
         email: email,
@@ -66,3 +66,30 @@ export const login = async (req, res) => {
     });
   }
 };
+
+export const createRefreshToken = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      throw createHttpError[401]('Bad request')
+    }
+    const { payload } = jwt.verify(refreshToken, process.env.SECRET_KEY);
+    const accessToken = generateAccessToken(payload._id)
+    const rfreshToken = generateRefreshToken(payload._id)
+    return res.status(200).json({
+      status: 200,
+      data: {
+        accessToken: accessToken,
+        refreshToken: rfreshToken,
+      },
+      message: "Create refreshToken success",
+      error: false
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      error: true,
+      message: error.message,
+    });
+  }
+}
