@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
   createProduct,
   deleteProductById,
@@ -6,10 +6,11 @@ import {
   getProducts,
   updateProductById,
 } from "../controllers/product.controller.js";
+import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 
-router.get("/getAll", getProducts);
+router.get("/getAll", requireAuth, getProducts);
 router.get("/getById/:id", getProductById);
 router.post("/create", createProduct);
 router.post("/updateById/:id", updateProductById);

@@ -4,7 +4,6 @@ import { checkExistUser } from "./../services/user.service.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { generateAccessToken, generateRefreshToken } from "../helpers/jwt.js";
-import { json } from "express";
 
 export const register = async (req, res) => {
   try {
@@ -82,7 +81,7 @@ export const createRefreshToken = async (req, res) => {
         accessToken: accessToken,
         refreshToken: rfreshToken,
       },
-      message: "Create refreshToken success",
+      message: "Create accessToken success",
       error: false
     });
   } catch (error) {
