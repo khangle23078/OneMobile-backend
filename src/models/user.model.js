@@ -1,4 +1,4 @@
-import {model, Schema} from "mongoose";
+import { model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
@@ -23,12 +23,13 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    user_type: {
-      type: Number,
-      default: 1,
+    role: {
+      type: String,
+      enum: ["ADMIN,USER"],
+      default: "USER",
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
 userSchema.pre("save", async function (req, res, next) {

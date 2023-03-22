@@ -1,19 +1,20 @@
 import createHttpError from "http-errors";
 import userModel from "../models/user.model.js";
-import {checkExistUser} from "./../services/user.service.js";
+import { checkExistUser } from "./../services/user.service.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { generateAccessToken, generateRefreshToken } from "../helpers/jwt.js";
 
 export const register = async (req, res) => {
   try {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     const existUser = await checkExistUser(email);
 
     // check user exist
     if (existUser) {
       throw createHttpError[400]("Email was registed");
     }
-    const user = new userModel({email, password});
+    const user = new userModel({ email, password });
     await user.save();
     res.status(200).json({
       status: 200,
@@ -30,25 +31,30 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     const existUser = await checkExistUser(email);
     // check user exist
     if (!existUser) {
       throw createHttpError[400]("Email doesn't exist");
     }
     //compare password current with hashed password in db
-    const comparePassword = await bcrypt.compare(password, existUser.password);
+    const comparePassword = bcrypt.compare(password, existUser.password);
     if (!comparePassword) {
       throw createHttpError[400]("Password doesn't match");
     }
 
-    const accessToken = jwt.sign({email, password}, process.env.SECRET_KEY, {
-      expiresIn: "1h",
-    });
+    const accessToken = generateAccessToken({ email, password })
+
+    const refreshToken = generateRefreshToken({ email, password })
 
     res.status(200).json({
       status: 200,
-      data: accessToken,
+      data: {
+        email: email,
+        role: existUser.role,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      },
       error: false,
       message: "Login user success!!",
     });
