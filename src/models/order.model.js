@@ -1,4 +1,4 @@
-import {model, Schema, Types} from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
 const orderSchema = new Schema(
   {
@@ -16,7 +16,7 @@ const orderSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["pending,success,cancel"],
+      enum: ["pending", "success", "cancel"],
       default: "pending",
       require: true,
     },
@@ -29,7 +29,10 @@ const orderSchema = new Schema(
       require: true,
     },
     products: {
-      type: Types.ObjectId,
+      type: [{
+        type: Types.ObjectId,
+        ref: 'products'
+      }],
       require: true,
     },
     user_id: {
