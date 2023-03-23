@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
   createCategory,
   deleteCategoryById,
@@ -6,13 +6,14 @@ import {
   getCategoryById,
   updateCategoryById,
 } from "../controllers/category.controller.js";
+import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 
-router.get("/getAll", getCategories);
-router.get("/getById/:id", getCategoryById);
-router.post("/create", createCategory);
-router.post("/updateById/:id", updateCategoryById);
-router.post("/deleteById/:id", deleteCategoryById);
+router.get("/getAll", requireAuth, getCategories);
+router.get("/getById/:id", requireAuth, getCategoryById);
+router.post("/create", requireAuth, createCategory);
+router.post("/updateById/:id", requireAuth, updateCategoryById);
+router.post("/deleteById/:id", requireAuth, deleteCategoryById);
 
 export default router;
