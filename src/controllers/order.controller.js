@@ -1,4 +1,4 @@
-import { getAll, insertOrder } from "./../services/order.service.js";
+import { getAll, insertOrder, updateStatusOrder } from "./../services/order.service.js";
 
 export const getOrders = async (req, res) => {
   try {
@@ -27,6 +27,25 @@ export const createOrder = async (req, res) => {
       status: 200,
       error: false,
       message: 'Create order success',
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
+    });
+  }
+}
+
+export const updateOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await updateStatusOrder(id, req.body)
+    res.status(200).json({
+      status: 200,
+      error: false,
+      message: 'Update order success',
     });
   } catch (error) {
     res.status(400).json({
