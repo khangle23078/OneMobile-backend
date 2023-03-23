@@ -16,7 +16,7 @@ connectDb();
 
 app.use(express.json());
 app.use(helmet());
-app.use(morgan("tiny"));
+app.use(morgan("combined"));
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
