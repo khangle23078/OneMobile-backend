@@ -5,7 +5,7 @@ export const getAll = () => {
 };
 
 export const getById = (id) => {
-  return productModel.findById(id);
+  return productModel.findById(id)
 };
 
 export const searchByName = (name) => {

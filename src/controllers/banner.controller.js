@@ -1,4 +1,4 @@
-import { getAll } from './../services/banner.service.js'
+import { getAll, insertOne } from './../services/banner.service.js'
 
 export const getBanners = async (req, res) => {
   try {
@@ -14,6 +14,24 @@ export const getBanners = async (req, res) => {
       error: false,
       message: error.message,
       data: null
+    })
+  }
+}
+
+export const createBanner = async (req, res) => {
+  try {
+    const data = req.body;
+    await insertOne(data);
+    res.status(200).json({
+      status: 200,
+      error: false,
+      message: "Create banner success"
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      error: true,
+      message: error.message
     })
   }
 }
