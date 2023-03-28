@@ -8,6 +8,10 @@ export const getById = (id) => {
   return productModel.findById(id);
 };
 
+export const searchByName = (name) => {
+  return productModel.find({ $text: { $search: name } })
+}
+
 export const updateById = (id, data) => {
   return productModel.findByIdAndUpdate(id, data, { new: true }).exec();
 };

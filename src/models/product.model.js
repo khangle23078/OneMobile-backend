@@ -1,4 +1,4 @@
-import {Schema, model, Types} from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const productSchema = new Schema(
   {
@@ -36,10 +36,6 @@ const productSchema = new Schema(
       type: String,
       require: true,
     },
-    isHot: {
-      type: Boolean,
-      require: true,
-    },
     category_id: {
       type: Types.ObjectId,
       ref: "categories",
@@ -49,5 +45,7 @@ const productSchema = new Schema(
     timestamps: true,
   }
 );
+
+productSchema.index({ name: "text" })
 
 export default model("products", productSchema);

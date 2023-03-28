@@ -41,7 +41,8 @@ export const createOrder = async (req, res) => {
 export const updateOrder = async (req, res) => {
   try {
     const { id } = req.params;
-    await updateStatusOrder(id, req.body)
+    const { status } = req.body;
+    await updateStatusOrder(id, { status: status })
     res.status(200).json({
       status: 200,
       error: false,

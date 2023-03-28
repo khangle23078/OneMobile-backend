@@ -1,8 +1,10 @@
+import createHttpError from "http-errors";
 import productModel from "../models/product.model.js";
 import {
   deleteById,
   getAll,
   getById,
+  searchByName,
   updateById,
 } from "./../services/product.service.js";
 
@@ -26,7 +28,7 @@ export const getProducts = async (req, res) => {
 
 export const getProductById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const product = await getById(id);
     res.status(200).json({
       status: 200,
@@ -42,6 +44,27 @@ export const getProductById = async (req, res) => {
     });
   }
 };
+
+export const searchProductByName = async (req, res) => {
+  try {
+    const { q } = req.query;
+    console.log(q);
+    const products = await searchByName(q);
+    console.log(products);
+    return res.status(200).json({
+      status: 200,
+      error: false,
+      data: products
+    })
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+      data: null
+    })
+  }
+}
 
 export const createProduct = async (req, res) => {
   try {
@@ -65,7 +88,7 @@ export const createProduct = async (req, res) => {
 
 export const updateProductById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     await updateById(id, req.body);
     res.status(200).json({
       status: 200,
@@ -85,7 +108,7 @@ export const updateProductById = async (req, res) => {
 
 export const deleteProductById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     await deleteById(id);
     res.status(200).json({
       status: 200,
