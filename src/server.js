@@ -6,6 +6,7 @@ import { connectDb } from "./config/db.config.js";
 import categoryRoute from "./routes/category.route.js";
 import productRoute from "./routes/product.route.js";
 import orderRoute from "./routes/order.route.js";
+import bannerRoute from "./routes/banner.route.js";
 import authRoute from "./routes/auth.route.js";
 import uploadRoute from './routes/upload.route.js'
 
@@ -20,6 +21,7 @@ app.use(morgan("combined"));
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/banner", bannerRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/file", uploadRoute)
 
