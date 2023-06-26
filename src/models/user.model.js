@@ -11,23 +11,10 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    full_name: {
+    userName: {
       type: String,
-      require: true,
-    },
-    phone_number: {
-      type: Number,
-      require: true,
-    },
-    address: {
-      type: String,
-      require: true,
-    },
-    role: {
-      type: String,
-      enum: ["ADMIN,USER"],
-      default: "USER",
-    },
+      required: true
+    }
   },
   { timestamps: true }
 );

@@ -50,7 +50,6 @@ export const login = async (req, res) => {
       status: 200,
       data: {
         email: email,
-        role: existUser.role,
         accessToken: accessToken,
         refreshToken: refreshToken,
       },
