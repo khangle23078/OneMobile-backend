@@ -13,7 +13,7 @@ const router = Router();
 router.get("/getAll", requireAuth, getCategories);
 router.get("/getById/:id", requireAuth, getCategoryById);
 router.post("/create", requireAuth, createCategory);
-router.post("/updateById/:id", requireAuth, updateCategoryById);
-router.post("/deleteById/:id", requireAuth, deleteCategoryById);
+router.put("/updateById/:id", requireAuth, updateCategoryById);
+router.delete("/deleteById/:id", requireAuth, deleteCategoryById);
 
 export default router;

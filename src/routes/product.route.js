@@ -13,9 +13,9 @@ const router = Router();
 
 router.get("/getAll", requireAuth, getProducts);
 router.get("/getById/:id", requireAuth, getProductById);
-router.post("/search", requireAuth, searchProductByName);
+router.get("/search", requireAuth, searchProductByName);
 router.post("/create", requireAuth, createProduct);
-router.post("/updateById/:id", requireAuth, updateProductById);
-router.post("/deleteById/:id", requireAuth, deleteProductById);
+router.put("/updateById/:id", requireAuth, updateProductById);
+router.delete("/deleteById/:id", requireAuth, deleteProductById);
 
 export default router;

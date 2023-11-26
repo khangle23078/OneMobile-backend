@@ -5,7 +5,7 @@ const route = Router()
 
 route.get("/getAll", requireAuth, getBanners)
 route.post("/create", requireAuth, createBanner)
-route.post("/updateById/:id", requireAuth, updateBannerById)
-route.post("/deleteById/:id", requireAuth, deleteBannerById)
+route.put("/updateById/:id", requireAuth, updateBannerById)
+route.delete("/deleteById/:id", requireAuth, deleteBannerById)
 
 export default route;
