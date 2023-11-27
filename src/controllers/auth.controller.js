@@ -48,7 +48,7 @@ export const login = async (req, res) => {
     const refreshToken = generateRefreshToken(existUser._id)
     return res.status(200).json({
       status: 200,
-      data: {
+      user: {
         email: email,
         accessToken: accessToken,
         refreshToken: refreshToken,
