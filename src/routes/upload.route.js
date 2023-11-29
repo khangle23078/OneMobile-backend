@@ -5,6 +5,6 @@ import { upload } from './../config/cloudinary.config.js'
 const router = Router()
 
 router.post('/upload', requireAuth, upload.single('image'), uploadImage)
-router.delete('/destroy', requireAuth, deleteImage)
+router.post('/destroy', requireAuth, deleteImage)
 
 export default router;
