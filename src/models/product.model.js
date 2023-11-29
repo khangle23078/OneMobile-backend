@@ -36,7 +36,7 @@ const productSchema = new Schema(
       type: String,
       require: true,
     },
-    category_id: {
+    category: {
       type: Types.ObjectId,
       ref: "categories",
     },
