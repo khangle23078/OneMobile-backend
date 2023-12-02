@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBanner, deleteBannerById, getBanners, updateBannerById } from "../controllers/banner.controller.js";
+import { createBanner, deleteBannerById, getBanner, getBanners, updateBannerById } from "../controllers/banner.controller.js";
 import { requireAuth } from "../middlewares/requireAuth.js";
 const route = Router()
 
