@@ -22,7 +22,8 @@ export const getBanner = async (req, res) => {
   const { id } = req.params;
   try {
     const banner = await getById(id);
-    return res.status(200).json({
+    console.log(banner);
+    res.status(200).json({
       status: 200,
       data: banner,
       error: false

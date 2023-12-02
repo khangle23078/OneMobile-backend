@@ -4,8 +4,8 @@ export const getAll = () => {
   return bannerModel.find();
 }
 
-export const getById = () => {
-  return bannerModel.findById();
+export const getById = (id) => {
+  return bannerModel.findById(id);
 }
 
 export const insertOne = (data) => {
