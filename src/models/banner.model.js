@@ -5,9 +5,9 @@ export const bannerSchema = new Schema({
     url: String,
     public_id: String
   },
-  product_id: {
-    type: Types.ObjectId,
-    ref: "products"
+  product_link: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true

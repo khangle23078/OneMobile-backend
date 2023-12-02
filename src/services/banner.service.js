@@ -4,6 +4,10 @@ export const getAll = () => {
   return bannerModel.find();
 }
 
+export const getById = () => {
+  return bannerModel.findById();
+}
+
 export const insertOne = (data) => {
   return bannerModel.create(data)
 }

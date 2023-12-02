@@ -1,4 +1,4 @@
-import { getAll, insertOne, updateById, deleteById } from './../services/banner.service.js'
+import { getAll, getById, insertOne, updateById, deleteById } from './../services/banner.service.js'
 
 export const getBanners = async (req, res) => {
   try {
@@ -17,6 +17,26 @@ export const getBanners = async (req, res) => {
     })
   }
 }
+
+export const getBanner = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const banner = await getById(id);
+    return res.status(200).json({
+      status: 200,
+      data: banner,
+      error: false
+    })
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      error: false,
+      message: error.message,
+      data: null
+    })
+  }
+}
+
 
 export const createBanner = async (req, res) => {
   try {
