@@ -1,5 +1,5 @@
-import createHttpError from "http-errors";
 import productModel from "../models/product.model.js";
+import { v2 as cloudinary } from 'cloudinary'
 import {
   deleteById,
   getAll,
@@ -109,10 +109,13 @@ export const updateProductById = async (req, res) => {
 export const deleteProductById = async (req, res) => {
   try {
     const { id } = req.params;
+    const product = await getById(id);
+    console.log(product);
+    await cloudinary.uploader.destroy(product?.image.public_id)
     await deleteById(id);
     res.status(200).json({
       status: 200,
-      data: null,
+      data: product,
       error: false,
       message: "Delete product success",
     });
