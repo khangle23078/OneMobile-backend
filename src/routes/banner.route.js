@@ -3,7 +3,7 @@ import { createBanner, deleteBannerById, getBanner, getBanners, updateBannerById
 import { requireAuth } from "../middlewares/requireAuth.js";
 const route = Router()
 
-route.get("/getAll", requireAuth, getBanners)
+route.get("/getAll", getBanners)
 route.get('/getById/:id', requireAuth, getBanner)
 route.post("/create", requireAuth, createBanner)
 route.put("/updateById/:id", requireAuth, updateBannerById)

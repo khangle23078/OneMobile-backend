@@ -4,7 +4,7 @@ import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 
-router.get("/getAll", requireAuth, getOrders);
+router.get("/getAll", getOrders);
 router.post("/create", requireAuth, createOrder);
 router.put("/updateById/:id", requireAuth, updateOrder);
 

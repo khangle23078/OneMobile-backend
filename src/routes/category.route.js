@@ -10,7 +10,7 @@ import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 
-router.get("/getAll", requireAuth, getCategories);
+router.get("/getAll", getCategories);
 router.get("/getById/:id", requireAuth, getCategoryById);
 router.post("/create", requireAuth, createCategory);
 router.put("/updateById/:id", requireAuth, updateCategoryById);

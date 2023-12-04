@@ -11,9 +11,9 @@ import { requireAuth } from "../middlewares/requireAuth.js";
 
 const router = Router();
 
-router.get("/getAll", requireAuth, getProducts);
-router.get("/getById/:id", requireAuth, getProductById);
-router.get("/search", requireAuth, searchProductByName);
+router.get("/getAll", getProducts);
+router.get("/getById/:id", getProductById);
+router.get("/search", searchProductByName);
 router.post("/create", requireAuth, createProduct);
 router.put("/updateById/:id", requireAuth, updateProductById);
 router.delete("/deleteById/:id", requireAuth, deleteProductById);
