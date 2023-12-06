@@ -7,7 +7,7 @@ const orderSchema = new Schema(
       require: true,
     },
     phone_number: {
-      type: Number,
+      type: String,
       require: true,
     },
     address: {
