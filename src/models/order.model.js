@@ -22,7 +22,6 @@ const orderSchema = new Schema(
     },
     description: {
       type: String,
-      required: true
     },
     product_count: {
       type: Number,
@@ -39,7 +38,7 @@ const orderSchema = new Schema(
       }],
       require: true,
     },
-    user_id: {
+    user: {
       type: Types.ObjectId,
       require: true,
     },
