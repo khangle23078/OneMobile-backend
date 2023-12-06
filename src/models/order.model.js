@@ -20,6 +20,10 @@ const orderSchema = new Schema(
       default: "pending",
       require: true,
     },
+    description: {
+      type: String,
+      required: true
+    },
     product_count: {
       type: Number,
       require: true,
