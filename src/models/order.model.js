@@ -22,7 +22,6 @@ const orderSchema = new Schema(
     },
     description: {
       type: String,
-      required: true
     },
     product_count: {
       type: Number,
