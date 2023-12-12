@@ -1,7 +1,7 @@
 import productModel from "../models/product.model.js";
 
-export const getAll = () => {
-  return productModel.find().populate('category', 'name');
+export const getAll = (option) => {
+  return productModel.find(option).populate('category', 'name');
 };
 
 export const getById = (id) => {

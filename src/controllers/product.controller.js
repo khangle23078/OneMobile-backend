@@ -7,6 +7,7 @@ import {
   searchByName,
   updateById,
 } from "./../services/product.service.js";
+import { Category } from './../models/category.model.js'
 
 export const getProducts = async (req, res) => {
   try {
@@ -25,6 +26,25 @@ export const getProducts = async (req, res) => {
     });
   }
 };
+
+export const getProductsByCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const category = await Category.findOne({ _id: id })
+    const products = await getAll({ category: category._id })
+    return res.status(200).json({
+      status: 200,
+      data: products
+    })
+  } catch (error) {
+    return res.status(400).json({
+      status: 400,
+      data: null,
+      error: true,
+      message: error.message,
+    })
+  }
+}
 
 export const getProductById = async (req, res) => {
   try {

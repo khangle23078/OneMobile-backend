@@ -1,4 +1,4 @@
-import categoryModel from "../models/category.model.js";
+import { Category } from "../models/category.model.js";
 import {
   deleteById,
   getAll,
@@ -26,7 +26,7 @@ export const getCategories = async (req, res) => {
 
 export const getCategoryById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const category = await getById(id);
     res.status(200).json({
       status: 200,
@@ -45,7 +45,7 @@ export const getCategoryById = async (req, res) => {
 
 export const createCategory = async (req, res) => {
   try {
-    const category = new categoryModel(req.body);
+    const category = new Category(req.body);
     await category.save();
     res.status(200).json({
       status: 200,
@@ -65,7 +65,7 @@ export const createCategory = async (req, res) => {
 
 export const updateCategoryById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     await updateById(id, req.body);
     res.status(200).json({
       status: 200,
@@ -85,7 +85,7 @@ export const updateCategoryById = async (req, res) => {
 
 export const deleteCategoryById = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     await deleteById(id);
     res.status(200).json({
       status: 200,

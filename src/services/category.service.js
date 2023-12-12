@@ -1,17 +1,17 @@
-import categoryModel from "../models/category.model.js";
+import { Category } from "../models/category.model.js";
 
 export const getAll = () => {
-  return categoryModel.find();
+  return Category.find();
 };
 
 export const getById = (id) => {
-  return categoryModel.findById(id);
+  return Category.findById(id);
 };
 
 export const updateById = (id, data) => {
-  return categoryModel.findByIdAndUpdate(id, data, {new: true}).exec();
+  return Category.findByIdAndUpdate(id, data, { new: true }).exec();
 };
 
 export const deleteById = (id) => {
-  return categoryModel.findByIdAndDelete(id, {new: true}).exec();
+  return Category.findByIdAndDelete(id, { new: true }).exec();
 };
