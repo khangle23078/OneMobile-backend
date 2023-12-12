@@ -48,4 +48,4 @@ const productSchema = new Schema(
 
 productSchema.index({ name: "text" })
 
-export default model("products", productSchema);
+export const Product = model("products", productSchema);

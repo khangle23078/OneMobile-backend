@@ -1,4 +1,4 @@
-import productModel from "../models/product.model.js";
+import { Product } from "../models/product.model.js";
 import { v2 as cloudinary } from 'cloudinary'
 import {
   deleteById,
@@ -68,9 +68,7 @@ export const getProductById = async (req, res) => {
 export const searchProductByName = async (req, res) => {
   try {
     const { q } = req.query;
-    console.log(q);
     const products = await searchByName(q);
-    console.log(products);
     return res.status(200).json({
       status: 200,
       error: false,

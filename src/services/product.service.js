@@ -1,21 +1,21 @@
-import productModel from "../models/product.model.js";
+import { Product } from "../models/product.model.js";
 
 export const getAll = (option) => {
-  return productModel.find(option).populate('category', 'name');
+  return Product.find(option).populate('category', 'name');
 };
 
 export const getById = (id) => {
-  return productModel.findById(id)
+  return Product.findById(id)
 };
 
 export const searchByName = (name) => {
-  return productModel.find({ $text: { $search: name } })
+  return Product.find({ $text: { $search: name } })
 }
 
 export const updateById = (id, data) => {
-  return productModel.findByIdAndUpdate(id, data, { new: true }).exec();
+  return Product.findByIdAndUpdate(id, data, { new: true }).exec();
 };
 
 export const deleteById = (id) => {
-  return productModel.findByIdAndDelete(id).exec();
+  return Product.findByIdAndDelete(id).exec();
 };
