@@ -21,19 +21,20 @@ export const getOrders = async (req, res) => {
 
 export const createOrder = async (req, res) => {
   try {
-    const data = req.body;
-    await insertOrder(data);
-    res.status(200).json({
+    const order = await insertOrder(req.body)
+    console.log(order);
+    return res.status(200).json({
       status: 200,
       error: false,
+      data: order,
       message: 'Create order success',
     });
   } catch (error) {
-    res.status(400).json({
-      status: 400,
+    return res.status(500).json({
+      status: 500,
       data: null,
       error: true,
-      message: error.message,
+      message: error,
     });
   }
 }

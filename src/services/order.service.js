@@ -1,18 +1,18 @@
-import orderModel from "../models/order.model.js";
+import { Order } from "../models/order.model.js";
 
 export const getAll = () => {
-  return orderModel.find();
+  return Order.find();
 };
 
 export const getById = (id) => {
-  return orderModel.findById(id);
+  return Order.findById(id);
 }
 
 export const insertOrder = (data) => {
-  return orderModel.create(data);
+  return Order.create(data);
 }
 
 export const updateStatusOrder = (id, data) => {
-  return orderModel.findByIdAndUpdate(id, data, { new: true })
+  return Order.findByIdAndUpdate(id, data, { new: true })
 }
 
