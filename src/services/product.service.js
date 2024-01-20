@@ -1,7 +1,9 @@
 import { Product } from "../models/product.model.js";
 
-export const getAll = (option) => {
-  return Product.find(option).populate('category', 'name');
+export const getAll = (limit, page) => {
+  return Product.find().limit(limit).skip((page - 1) * limit)
+    .populate('category', 'name')
+    .exec();
 };
 
 export const getById = (id) => {

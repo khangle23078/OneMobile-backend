@@ -32,11 +32,8 @@ const orderSchema = new Schema({
     require: true,
   },
   products: {
-    type: [{
-      type: Types.ObjectId,
-      ref: 'products'
-    }],
-    require: true,
+    type: Array,
+    require: true
   },
   user: {
     type: Types.ObjectId,
