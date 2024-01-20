@@ -11,10 +11,19 @@ import { Category } from './../models/category.model.js'
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await getAll();
+
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const total_product = await getAll();
+    const products = await getAll(limit, page);
     res.status(200).json({
       status: 200,
       data: products,
+      pagination: {
+        page: page,
+        limit: limit,
+        total_item: total_product.length
+      },
       error: false,
     });
   } catch (error) {
